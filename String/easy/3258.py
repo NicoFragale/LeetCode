@@ -1,21 +1,30 @@
-#non concluso 
+'''
+You are given a binary string s and an integer k.
+
+A binary string satisfies the k-constraint if either of the following conditions holds:
+
+The number of 0's in the string is at most k.
+The number of 1's in the string is at most k.
+Return an integer denoting the number of 
+substrings
+ of s that satisfy the k-constraint.
+'''
 def countKConstraintSubstrings(s,k):
-    output = ''
-    i = 0 
-    l = []
-    for index, bin in enumerate(s): 
-        output += bin
-        i += 1
-        l.append(output)
-        for b2 in s[index+1:]:
-            output += b2
+    c = 0 
+    lista = []
+    n = len(s)
+    for i in range(n):  
+        for j in range(i + 1, n + 1):  
+            lista.append(s[i:j])
 
-            for numero in output: 
-                r = output.count(numero)
-                if output.count(numero) <= k:
-                    i += 1
-                    l.append(output)
+    for stringa in lista: 
+        zeri = stringa.count('0')
+        uni =  stringa.count('1')
+        if zeri <= k or uni <= k:
+            c += 1
 
-    return i, l
+    return c
+    
+    
 
 print(countKConstraintSubstrings('10101', 1))
