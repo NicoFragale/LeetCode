@@ -6,8 +6,8 @@ Return the answer in an array.
 
 
 def smallerNumbersThanCurrent(self, nums):
-    
-        indexed_arr = list(enumerate(nums))
+
+        indexed_arr = list(enumerate(nums)) 
         indexed_arr.sort(key=lambda x: x[1])
         
         count_smaller = {}
