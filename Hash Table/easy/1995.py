@@ -1,10 +1,19 @@
-'''
-Given a 0-indexed integer array nums, return the number of distinct quadruplets (a, b, c, d) such that:
+def countQuadruplets(self, nums):
+    count = 0
+    numbers = {}
 
-nums[a] + nums[b] + nums[c] == nums[d], and
-a < b < c < d
-'''
+    for i in range(len(nums) - 1):
+        for j in range(i + 1, len(nums)):
+            s = nums[j] + nums[i]
+            if s not in numbers:
+                numbers[s] = []
+            numbers[s].append(j)
 
-def countQuadruplets(nums):
-
-print(countQuadruplets([1,1,1,3,5]))
+    for i in range(2, len(nums) - 1):
+        for j in range(i + 1, len(nums)):
+            target = nums[j] - nums[i]
+            if target in numbers:
+                for idx in numbers[target]:
+                    if idx < i:
+                        count += 1
+    return count
